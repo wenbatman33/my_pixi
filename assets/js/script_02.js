@@ -19,6 +19,15 @@ testGraphics.endFill();
 const sprite = PIXI.Sprite.from('./assets/img/flowerTop.png');
 sprite.buttonMode = true;
 sprite.interactive = true;
+// 資源庫可累加
+const loader = new PIXI.loaders.Loader();
+loader.add('bunny','./assets/img/front.gif')
+// 載入事件
+loader.onProgress.add((event) => {console.log('onProgress')});
+loader.onError.add((target,event,error) => {console.log('onError')});
+loader.onLoad.add((target) => {console.log('onLoad')});
+loader.onComplete.add(() => {console.log('onComplete')}); 
+loader.load(); 
 
 sprite.addListener('pointertap', () => {
   alert('Hola');
